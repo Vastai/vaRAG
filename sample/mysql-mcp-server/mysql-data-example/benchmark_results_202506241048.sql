@@ -1,0 +1,65 @@
+INSERT INTO evalscope.benchmark_results (max_concurrency,duration_seconds,successful_requests,input_tokens,generated_tokens,req_throughput,output_token_throughput,total_token_throughput,mean_ttft_ms,mean_tpot_ms,decoding_token_throughput,per_req_decoding_throughput,model_name,cpu_info,ai_info,test_date) VALUES
+	 (4,191.02,20,128,1024,0.03,26.80,30.15,1902.90,99.80,10.02,10.02,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_034410'),
+	 (4,194.20,20,256,1024,0.03,26.37,32.96,2701.40,101.20,9.88,9.88,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_034724'),
+	 (4,200.01,20,512,1024,0.03,25.60,38.40,3948.00,103.40,9.67,9.67,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_035041'),
+	 (4,210.88,20,1024,1024,0.02,24.28,48.56,6564.00,108.50,9.22,9.22,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_035404'),
+	 (4,227.99,20,2048,1024,0.02,22.46,67.37,11071.60,115.60,8.65,8.65,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_035738'),
+	 (4,263.85,20,4096,1024,0.02,19.41,97.03,21038.50,129.30,7.73,7.73,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_040129'),
+	 (4,349.18,20,8192,1024,0.01,14.66,131.97,52801.20,154.90,6.46,6.46,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_040556'),
+	 (4,558.94,20,16384,1024,0.01,9.16,155.72,131662.70,188.70,5.30,5.30,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_041148'),
+	 (4,1732.07,20,32768,1024,0.00,2.96,97.55,703655.10,199.80,5.01,5.01,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_042110'),
+	 (4,3144.37,20,54272,1024,0.00,1.63,87.93,1435697.40,234.80,4.26,4.26,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_045006');
+INSERT INTO evalscope.benchmark_results (max_concurrency,duration_seconds,successful_requests,input_tokens,generated_tokens,req_throughput,output_token_throughput,total_token_throughput,mean_ttft_ms,mean_tpot_ms,decoding_token_throughput,per_req_decoding_throughput,model_name,cpu_info,ai_info,test_date) VALUES
+	 (2,448.17,10,128,1024,0.01,11.42,12.85,17345.60,130.20,7.68,7.68,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_054234'),
+	 (2,396.17,10,256,1024,0.01,12.92,16.15,1984.20,132.40,7.55,7.55,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_055005'),
+	 (2,258.54,10,512,1024,0.02,19.80,29.71,2880.50,81.80,12.22,12.22,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_055647'),
+	 (2,268.87,10,1024,1024,0.02,19.04,38.08,4230.70,83.80,11.93,11.93,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_060108'),
+	 (2,285.56,10,2048,1024,0.02,17.93,53.79,7259.00,86.30,11.59,11.59,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_060540'),
+	 (2,321.33,10,4096,1024,0.02,15.93,79.67,13476.50,91.80,10.89,10.89,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_061029'),
+	 (2,407.04,10,8192,1024,0.01,12.58,113.21,30421.60,103.20,9.69,9.69,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_061553'),
+	 (2,614.42,10,16384,1024,0.01,8.33,141.66,74537.70,127.60,7.84,7.84,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_062244'),
+	 (2,1647.86,10,32768,1024,0.00,3.11,102.53,371743.20,174.00,5.75,5.75,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_063301'),
+	 (2,2927.29,10,54272,1024,0.00,1.75,94.45,737440.60,234.80,4.26,4.26,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_070032');
+INSERT INTO evalscope.benchmark_results (max_concurrency,duration_seconds,successful_requests,input_tokens,generated_tokens,req_throughput,output_token_throughput,total_token_throughput,mean_ttft_ms,mean_tpot_ms,decoding_token_throughput,per_req_decoding_throughput,model_name,cpu_info,ai_info,test_date) VALUES
+	 (1,406.38,5,128,1024,0.01,12.60,14.17,1455.80,78.00,12.82,12.82,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_074924'),
+	 (1,411.57,5,256,1024,0.01,12.44,15.55,1844.50,78.70,12.71,12.71,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_075613'),
+	 (1,422.20,5,512,1024,0.01,12.13,18.19,2778.80,79.80,12.53,12.53,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_080308'),
+	 (1,439.62,5,1024,1024,0.01,11.65,23.29,4147.40,81.90,12.21,12.21,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_081013'),
+	 (1,467.56,5,2048,1024,0.01,10.95,32.85,7188.60,84.40,11.85,11.85,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_081736'),
+	 (1,527.33,5,4096,1024,0.01,9.71,48.55,13411.20,90.00,11.11,11.11,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_082527'),
+	 (1,670.71,5,8192,1024,0.01,7.63,68.70,30399.10,101.40,9.86,9.86,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_083417'),
+	 (1,1016.28,5,16384,1024,0.00,5.04,85.65,74459.30,125.90,7.94,7.94,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_084531'),
+	 (1,2737.19,5,32768,1024,0.00,1.87,61.73,371265.50,172.20,5.81,5.81,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_090230'),
+	 (1,4846.65,5,54272,1024,0.00,1.06,57.05,731348.10,232.60,4.30,4.30,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_094811');
+INSERT INTO evalscope.benchmark_results (max_concurrency,duration_seconds,successful_requests,input_tokens,generated_tokens,req_throughput,output_token_throughput,total_token_throughput,mean_ttft_ms,mean_tpot_ms,decoding_token_throughput,per_req_decoding_throughput,model_name,cpu_info,ai_info,test_date) VALUES
+	 (4,1767.97,20,128,8192,0.00,23.17,23.53,1896.40,119.10,8.40,8.40,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_115952'),
+	 (4,1779.79,20,256,8192,0.00,23.01,23.73,2703.80,119.90,8.34,8.34,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_122923'),
+	 (4,1800.25,20,512,8192,0.00,22.75,24.17,3955.60,121.20,8.25,8.25,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_125906'),
+	 (4,1840.91,20,1024,8192,0.00,22.25,25.03,6571.20,123.90,8.07,8.07,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_132909'),
+	 (4,1919.77,20,2048,8192,0.00,21.34,26.67,11037.00,129.40,7.73,7.73,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_135953'),
+	 (4,2080.48,20,4096,8192,0.00,19.69,29.53,23087.90,139.40,7.17,7.17,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_143156'),
+	 (4,2417.56,20,8192,8192,0.00,16.94,33.89,52733.80,162.00,6.17,6.17,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_150640'),
+	 (4,3160.87,20,16384,8192,0.00,12.96,38.88,131530.30,205.50,4.87,4.87,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_154700'),
+	 (4,5630.32,20,32768,8192,0.00,7.27,36.37,1501319.50,184.20,5.43,5.43,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_163944'),
+	 (4,8191.66,20,54272,8192,0.00,5.00,38.13,2371194.50,244.80,4.08,4.08,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_181338');
+INSERT INTO evalscope.benchmark_results (max_concurrency,duration_seconds,successful_requests,input_tokens,generated_tokens,req_throughput,output_token_throughput,total_token_throughput,mean_ttft_ms,mean_tpot_ms,decoding_token_throughput,per_req_decoding_throughput,model_name,cpu_info,ai_info,test_date) VALUES
+	 (2,2225.39,10,128,8192,0.00,18.41,18.69,1577.40,90.70,11.03,11.03,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_203013'),
+	 (2,2235.44,10,256,8192,0.00,18.32,18.90,1980.70,91.10,10.98,10.98,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_210721'),
+	 (2,2256.08,10,512,8192,0.00,18.16,19.29,2897.10,91.80,10.89,10.89,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_214440'),
+	 (2,2296.79,10,1024,8192,0.00,17.83,20.06,4267.80,93.40,10.71,10.71,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_222219'),
+	 (2,2375.61,10,2048,8192,0.00,17.24,21.55,7274.00,96.10,10.41,10.41,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_230039'),
+	 (2,2535.82,10,4096,8192,0.00,16.15,24.23,13471.70,101.90,9.81,9.81,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250605_234018'),
+	 (2,2869.79,10,8192,8192,0.00,14.27,28.55,30304.80,113.40,8.82,8.82,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250606_002237'),
+	 (2,3602.33,10,16384,8192,0.00,11.37,34.11,74525.00,137.80,7.26,7.26,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250606_011030'),
+	 (2,5728.21,10,32768,8192,0.00,7.15,35.75,371253.60,188.50,5.31,5.31,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250606_021035'),
+	 (1,3642.76,5,128,8192,0.00,11.24,11.42,1452.20,88.80,11.26,11.26,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250606_041926');
+INSERT INTO evalscope.benchmark_results (max_concurrency,duration_seconds,successful_requests,input_tokens,generated_tokens,req_throughput,output_token_throughput,total_token_throughput,mean_ttft_ms,mean_tpot_ms,decoding_token_throughput,per_req_decoding_throughput,model_name,cpu_info,ai_info,test_date) VALUES
+	 (1,3662.52,5,256,8192,0.00,11.18,11.53,1857.20,89.20,11.21,11.21,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250606_052012'),
+	 (1,3696.27,5,512,8192,0.00,11.08,11.77,2787.90,89.90,11.12,11.12,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250606_062118'),
+	 (1,3763.58,5,1024,8192,0.00,10.88,12.24,4152.80,91.40,10.94,10.94,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250606_072257'),
+	 (1,3895.29,5,2048,8192,0.00,10.52,13.14,7184.20,94.20,10.62,10.62,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250606_082544'),
+	 (1,4167.64,5,4096,8192,0.00,9.83,14.74,13550.40,100.10,9.99,9.99,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250606_093043'),
+	 (1,5708.36,5,8192,8192,0.00,7.18,14.35,30178.00,135.70,7.37,7.37,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250606_104013'),
+	 (1,7096.21,5,16384,8192,0.00,5.77,17.32,75008.50,164.10,6.09,6.09,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250606_121525'),
+	 (1,10375.12,5,32768,8192,0.00,3.95,19.74,373008.10,207.80,4.81,4.81,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250606_141344'),
+	 (1,13630.83,5,54272,8192,0.00,3.01,22.91,738497.60,242.70,4.12,4.12,'DeepSeek-V3-0324','Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz','AI2.8.0','20250606_170643');

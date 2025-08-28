@@ -1,0 +1,50 @@
+services:
+  text2vec:
+    image: ${TEXT2VEC_CPU_IMAGE}
+    container_name: text2vec
+    restart: always
+    ipc: host
+    ports:
+      - "9996:9996"
+    environment:
+      - XINFERENCE_HOME=/cache
+      - instance_nums=${instance_nums}
+      - embed_cpu_model_name=${embed_cpu_model_name}
+      - embed_cpu_model_path=${embed_cpu_model_path}
+      - rerank_cpu_model_name=${rerank_cpu_model_name}
+      - rerank_cpu_model_path=${rerank_cpu_model_path}
+    volumes:
+      - ${HOST_DATA_DIR}:/weights
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9996"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    command:
+      - /bin/bash
+      - -c
+      - |
+        # 主服务启动
+        xinference-local --host 0.0.0.0 --port 9996 --log-level debug &
+
+        # 等待服务就绪
+        while ! curl -s http://localhost:9996 >/dev/null; do
+          sleep 2
+        done
+
+        # 安装依赖
+        pip uninstall timm -y && pip install timm
+
+        # 使用环境变量启动模型
+        xinference launch --model-name $${embed_cpu_model_name} \
+          --model-type embedding --replica $${instance_nums} --model-path /weights/$${embed_cpu_model_path} &
+
+        xinference launch --model-name $${rerank_cpu_model_name} \
+          --model-type rerank --replica $${instance_nums} --model-path /weights/$${rerank_cpu_model_path} &
+
+        sleep 5
+        echo 'Models are up and running!'
+        curl 'http://localhost:9996/v1/models'
+
+        # 保持容器运行
+        wait
