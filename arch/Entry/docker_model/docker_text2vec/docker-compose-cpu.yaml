@@ -5,7 +5,7 @@ services:
     restart: always
     ipc: host
     ports:
-      - "9996:9996"
+      - "9996:9997"
     environment:
       - XINFERENCE_HOME=/cache
       - instance_nums=${instance_nums}
@@ -14,7 +14,7 @@ services:
     volumes:
       - ${HOST_DATA_DIR}:/weights
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9996"]
+      test: ["CMD", "curl", "-f", "http://localhost:9997"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -23,15 +23,15 @@ services:
       - -c
       - |
         # 主服务启动
-        xinference-local --host 0.0.0.0 --port 9996 --log-level debug &
+        xinference-local --host 0.0.0.0 --port 9997 --log-level debug &
 
         # 等待服务就绪
-        while ! curl -s http://localhost:9996 >/dev/null; do
+        while ! curl -s http://localhost:9997 >/dev/null; do
           sleep 2
         done
 
         # 安装依赖
-        pip uninstall timm -y && pip install timm
+        pip uninstall timm -y && pip install -i https://pypi.tuna.tsinghua.edu.cn/simple timm
 
         # 使用环境变量启动模型
         xinference launch --model-name $${embed_cpu_model_name} \
@@ -39,7 +39,7 @@ services:
 
         sleep 5
         echo 'Models are up and running!'
-        curl 'http://localhost:9996/v1/models'
+        curl 'http://localhost:9997/v1/models'
 
         # 保持容器运行
         wait
