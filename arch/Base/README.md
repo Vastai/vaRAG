@@ -96,11 +96,13 @@ sudo ./vastai_driver_install_d3_3_v2_7_a3_0_9c31939_00.25.08.11.run install --se
 
 >以下模型服务示例以 `x86 架构` 为例，ARM 架构的配置方法类似，具体请参考 [ARM 架构配置说明](./docker_model_arm/)。
 
+**Note:** 模型服务端口可在模型服务yaml文件中查看
+
 #### 启动Embedding模型服务和Rerank模型服务
 
 - 如果大模型为DS3系列模型，则Embedding模型和Rerenk模型只能部署在CPU端。
 
-- 如果大模型为DS3系列模型，则Embedding模型和Rerenk模型可根据实际情况部署在CPU端或VA16上。如果部署在VA16上，需先按照[VastModelZOO流程](https://github.com/Vastai/VastModelZOO/tree/develop/nlp/text2vec/bge)将模型转换为`vacc`格式。
+- 如果大模型为Qwen3系列模型，则Embedding模型和Rerenk模型可根据实际情况部署在CPU端或VA16上。如果部署在VA16上，需先按照[VastModelZOO流程](https://github.com/Vastai/VastModelZOO/tree/develop/nlp/text2vec/bge)将模型转换为`vacc`格式。
 
 以bge-m3/bge-reranker-v2-m3为例进行说明。
 

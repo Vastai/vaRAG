@@ -87,6 +87,8 @@ sudo ./vastai_driver_install_d3_3_v2_7_a3_0_9c31939_00.25.08.11.run install --se
 
 >以下模型服务示例以 `x86 架构` 为例，ARM 架构的配置方法类似，具体请参考 [ARM 架构配置说明](./docker_model_arm/)。
 
+**Note:** 模型服务端口可在模型服务yaml文件中查看
+
 #### 启动Embedding模型服务
 
 Embedding模型部署在CPU端。
