@@ -23,7 +23,7 @@
 - [`Base`版本](./arch/Base/README.md)主要针对搭载八张VA16的一体机场景。在该场景下，所支持的大模型包括DS3系列和Qwen3系列。其中，DS3系列、Qwen3系列大模型部署在VA16加速卡上。而Embedding模型和Rerenk 模型可根据实际情况部署在CPU端或VA16上。
    - 如果大模型为DS3系列模型，则Embedding模型和Rerenk模型只能部署在CPU端。
 
-   - 如果大模型为DS3系列模型，则Embedding模型和Rerenk模型可根据实际情况部署在CPU端或VA16上。
+   - 如果大模型为Qwen3系列模型，则Embedding模型和Rerenk模型可根据实际情况部署在CPU端或VA16上。
 
 - [`Fully`版本](./arch/Fully/README.md)主要针对搭载八张VA16和四张L2的一体机场景。在该场景下，所支持的大模型包括DS3系列和Qwen3系列。其中，DS3系列、Qwen3系列大模型部署在VA16加速卡上；Embedding模型、Rerank模型以及Query任务、NL2SQL任务所需的模型部署在L2上。
 
