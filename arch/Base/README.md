@@ -4,7 +4,7 @@
 
    - 如果大模型为DS3系列模型，则Embedding模型和Rerenk模型只能部署在CPU端。
 
-   - 如果大模型为DS3系列模型，则Embedding模型和Rerenk模型可根据实际情况部署在CPU端或VA16上。
+   - 如果大模型为Qwen3系列模型，则Embedding模型和Rerenk模型可根据实际情况部署在CPU端或VA16上。
 
 ### DS3系列方案架构
 
@@ -104,7 +104,9 @@ sudo ./vastai_driver_install_d3_3_v2_7_a3_0_9c31939_00.25.08.11.run install --se
 
 - 如果大模型为Qwen3系列模型，则Embedding模型和Rerenk模型可根据实际情况部署在CPU端或VA16上。如果部署在VA16上，需先按照[VastModelZOO流程](https://github.com/Vastai/VastModelZOO/tree/develop/nlp/text2vec/bge)将模型转换为`vacc`格式。
 
-以bge-m3/bge-reranker-v2-m3为例进行说明。
+以bge-m3/bge-reranker-v2-m3为例进行说明。 
+
+> [bge-m3](https://huggingface.co/BAAI/bge-m3)/[bge-reranker-v2-m3](https://huggingface.co/BAAI/bge-reranker-v2-m3)模型可从huggingface上进行下载。
 
 1. 配置Embedding模型和Rerank模型参数。
 
@@ -118,7 +120,7 @@ sudo ./vastai_driver_install_d3_3_v2_7_a3_0_9c31939_00.25.08.11.run install --se
 
     # 镜像设置
     TEXT2VEC_CPU_IMAGE=xprobe/xinference:v1.4.0-cpu
-    TEXT2VEC_VACC_IMAGE=harbor.vastaitech.com/ai_deliver/xinference_vacc:AI3.0_SP9_0811
+    TEXT2VEC_VACC_IMAGE=harbor.vastaitech.com/ai_deliver/xinference_vacc_151:AI3.0_SP9_0811
     # CPU端模型参数设置
     instance_nums=4
     embed_cpu_model_name=bge-m3
@@ -143,6 +145,16 @@ sudo ./vastai_driver_install_d3_3_v2_7_a3_0_9c31939_00.25.08.11.run install --se
 2. 通过docker-compose启动镜像。
 
    - 若大模型为Qwen3系列，`bge-m3/bge-reranker-v2-m3`模型可在VA16上运行。启动模型服务前，需按照[VastModelZOO流程](https://github.com/Vastai/VastModelZOO/tree/develop/nlp/text2vec/bge)将`bge-m3/bge-reranker-v2-m3`模型转为`vacc`格式。
+   - 转成`vacc`格式后，还需要在`vacc`模型目录下创建文件夹`tokenizer`，并将原始模型文件中的`tokenizer_config.json`和`tokenizer.json`两个文件拷贝到`tokenizer`目录下。
+   - 在`tokenizer`文件夹下还需要添加`vacc_config.json`文件。
+   - `vacc_config.json`文件内容如下：具体参数值根据实际情况设置
+
+   ```json
+    {
+        "batch_size": 4,
+        "max_seqlen": 512 
+    }
+    ```
 
    ```BASH
    # Qwen3系列
@@ -167,7 +179,10 @@ sudo ./vastai_driver_install_d3_3_v2_7_a3_0_9c31939_00.25.08.11.run install --se
     ```
     # change model path
     HOST_DATA_DIR=/vastai/
-    DS3_IMAGE=harbor.vastaitech.com/ai_deliver/xinference_vacc:AI3.0_SP9_0811    
+    DS3_IMAGE=harbor.vastaitech.com/ai_deliver/xinference_vacc_151:AI3.0_SP9_0811  
+    # 参数设置
+    model_name=deepseek-v3
+    model_path=DeepSeek-V3-0324  
     ```
 
     b. 执行`source .env`使配置文件生效。
@@ -213,8 +228,9 @@ sudo ./vastai_driver_install_d3_3_v2_7_a3_0_9c31939_00.25.08.11.run install --se
     # 基础路径
     HOST_DATA_DIR=/vastai/
     # 镜像设置
-    xinfer_vacc_IMAGE=harbor.vastaitech.com/ai_deliver/xinference_vacc:AI3.0_SP9_0811
+    xinfer_vacc_IMAGE=harbor.vastaitech.com/ai_deliver/xinference_vacc_151:AI3.0_SP9_0811
     # 模型参数设置
+    model_name=qwen3
     model_path=Qwen3-30B-A3B-Thinking-2507-FP8
     # GPU_PARIS的列表数量=TP*instance_nums。TP只能为2或4。GPU_PARIS 表示卡Die ID 列表。
     GPU_PAIRS=4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31
@@ -278,13 +294,20 @@ admin@vastai.com / admin / dify@123.
 
 2. 添加Embedding模型。
 
+> `模型名称`和`API endpoint URL`需要和启动模型服务时配置的参数一致。具体参考[启动模型服务](./docker_model/docker_text2vec/docker-compose-vacc.yaml)。
+
 ![](../../images/model/step-model-embed.png)
 
 3. 添加Rerank模型。
 
+> `模型名称`和`API endpoint URL`需要和启动模型服务时配置的参数一致。具体参考[启动模型服务](./docker_model/docker_text2vec/docker-compose-vacc.yaml)。
+
 ![](../../images/model/step-model-rerank.png)
 
 4. 添加LLM模型。以DeepSeek-V3模型为例。
+
+> `模型名称`和`API endpoint URL`需要和启动模型服务时配置的参数一致。具体参考[启动模型服务](./docker_model/docker_ds3/docker-compose.yaml)。
+
 ![](../../images/model/step-model-llm.png)
 
 > 配置LLM模型参数时需要把`流模式返回结果的分隔符`设置成`\r\n\r\n`
@@ -325,12 +348,15 @@ admin@vastai.com / admin / dify@123.
 
     ![](../../images/rag/rag-step-load.png)
 
-8. 添加知识库并发布应用。
+8. 更新编排中的LLM模型服务。
+
+    ![](../../images/rag/rag-step8.png)
+
+9. 添加知识库并发布应用。
 
     ![](../../images/rag/rag-step-add-base.png)
 
-
-9. 应用对话示例。
+10. 应用对话示例。
 
     ![](../../images/rag/rag-base.png)
 
@@ -405,8 +431,19 @@ admin@vastai.com / admin / ragflow@123.
 
 1. 在Dify平台配置外部知识库API。
 
+> `API Key`为[RAGFlow API密钥](../../images/rag_with_ragflow/RAGFlow_api.png)。
+
 ![](../../images/rag_with_ragflow/RAGFlow_setting.png)
 
 2. 连接外部知识库。
 
 ![](../../images/rag_with_ragflow/RAGFlow_dify-base.png)
+
+3. 召回测试。
+
+![](../../images/rag_with_ragflow/RAGFlow_dify-test.png)
+
+4. 在编排中添加外部知识库。
+
+![](../../images/rag_with_ragflow/RAGFlow_dify-2.png)
+
