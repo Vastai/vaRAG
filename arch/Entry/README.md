@@ -94,7 +94,7 @@ sudo ./vastai_driver_install_d3_3_v2_7_a3_0_9c31939_00.25.08.11.run install --se
 Embedding模型部署在CPU端。
 
 以bge-m3为例进行说明。
-
+> [bge-m3](https://huggingface.co/BAAI/bge-m3)模型可从huggingface上进行下载。
 1. 配置模型参数。
 
     a. 在`docker_model/docker_text2vec/.env`文件中配置模型路径等参数。
@@ -135,8 +135,9 @@ Qwen3系列模型部署在VA1L上。
     # 基础路径
     HOST_DATA_DIR=/vastai/
     # 镜像设置
-    xinfer_vacc_IMAGE=harbor.vastaitech.com/ai_deliver/xinference_vacc:AI3.0_SP9_0811
+    xinfer_vacc_IMAGE=harbor.vastaitech.com/ai_deliver/xinference_vacc_151:AI3.0_SP9_0811
     # 参数设置
+    model_name=qwen3
     model_path=Qwen3-30B-A3B-Thinking-2507-FP8
     # GPU_PARIS的列表数量=TP*instance_nums。TP只能为2或4。GPU_PARIS 表示卡Die ID 列表。
     # 对于单卡，TP只能为2，instance_nums只能设置为1。
@@ -200,9 +201,13 @@ Qwen3系列模型部署在VA1L上。
 
 2. 添加Embedding模型。
 
+> `模型名称`和`API endpoint URL`需要和启动模型服务时配置的参数一致。具体参考[启动模型服务](./docker_model/docker_text2vec/docker-compose-cpu.yaml)。
+
 ![](../../images/model/step-model-embed.png)
 
 3. 添加LLM模型。
+
+> `模型名称`和`API endpoint URL`需要和启动模型服务时配置的参数一致。具体参考[启动模型服务](./docker_model/docker_qwen3/docker-compose-think-tp4.yaml)。
 
 ![](../../images/model/step-model-llm-entry.png)
 
@@ -243,11 +248,15 @@ Qwen3系列模型部署在VA1L上。
 
     ![](../../images/rag/rag-step-load.png)
 
-8. 添加知识库并发布应用。
+8. 更新编排中的LLM模型服务。
+
+    ![](../../images/rag/rag-step8-entry.png)
+
+9. 添加知识库并发布应用。
 
     ![](../../images/rag/rag-step-add-entry.png)
 
 
-9. 应用对话示例。
+10. 应用对话示例。
 
     ![](../../images/rag/rag-entry.png)

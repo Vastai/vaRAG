@@ -106,7 +106,10 @@ sudo ./vastai_driver_install_d3_3_v2_7_a3_0_9c31939_00.25.08.11.run install --se
     # change model path
 
     HOST_DATA_DIR=/vastai/
-    DS3_IMAGE=harbor.vastaitech.com/ai_deliver/xinference_vacc:AI3.0_SP9_0811   
+    DS3_IMAGE=harbor.vastaitech.com/ai_deliver/xinference_vacc_151:AI3.0_SP9_0811 
+    # 参数设置
+    model_name=deepseek-v3
+    model_path=DeepSeek-V3-0324  
     ```
 
     b. 执行`source .env`使配置文件生效。
@@ -153,8 +156,9 @@ sudo ./vastai_driver_install_d3_3_v2_7_a3_0_9c31939_00.25.08.11.run install --se
     # 基础路径
     HOST_DATA_DIR=/vastai/
     # 镜像设置
-    xinfer_vacc_IMAGE=harbor.vastaitech.com/ai_deliver/xinference_vacc:AI3.0_SP9_0811
+    xinfer_vacc_IMAGE=harbor.vastaitech.com/ai_deliver/xinference_vacc_151:AI3.0_SP9_0811
     # 模型参数设置
+    model_name=qwen3
     model_path=Qwen3-30B-A3B-Thinking-2507-FP8
     # GPU_PARIS的列表数量=TP*instance_nums。TP只能为2或4。GPU_PARIS 表示卡Die ID 列表。
     GPU_PAIRS=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31
@@ -200,7 +204,7 @@ sudo ./vastai_driver_install_d3_3_v2_7_a3_0_9c31939_00.25.08.11.run install --se
 ### 启动Embedding、Rerank、Query、NL2SQL模型服务
 
 Embedding模型、Rerank模型以及Query任务、NL2SQL任务所需的模型部署在L2上。
-
+> [bge-m3](https://huggingface.co/BAAI/bge-m3)/[bge-reranker-v2-m3](https://huggingface.co/BAAI/bge-reranker-v2-m3)/[Query模型](https://huggingface.co/Qwen/Qwen3-1.7B)/[NL2SQL模型](https://huggingface.co/cycloneboy/CscSQL-Grpo-XiYanSQL-QwenCoder-3B-2502)模型可从huggingface上进行下载。
 1. 配置模型参数。
     在`docker_model/docker_gpu_model/.env`文件中配置模型路径等参数。
 
@@ -306,13 +310,17 @@ admin@vastai.com / admin / dify@123.
 
 2. 添加Embedding模型。
 
+> `模型名称`和`API endpoint URL`需要和启动模型服务时配置的参数一致。具体参考[启动模型服务](./docker_model/docker_gpu_model/docker-compose.yaml)。
+
 ![](../../images/model/step-model-embed-fully.png)
 
 3. 添加Rerank模型。
+> `模型名称`和`API endpoint URL`需要和启动模型服务时配置的参数一致。具体参考[启动模型服务](./docker_model/docker_gpu_model/docker-compose.yaml)。
 
 ![](../../images/model/step-model-rerank-fully.png)
 
 4. 添加LLM模型。以DeepSeek-V3模型为例。
+> `模型名称`和`API endpoint URL`需要和启动模型服务时配置的参数一致。具体参考[启动模型服务](./docker_model/docker_ds3/docker-compose.yaml)。
 
 ![](../../images/model/step-model-llm-fully.png)
 
@@ -322,9 +330,14 @@ admin@vastai.com / admin / dify@123.
 
 5. 添加配置`Query服务`模型。
 
+> `模型名称`和`API endpoint URL`需要和启动模型服务时配置的参数一致。具体参考[启动模型服务](./docker_model/docker_gpu_model/docker-compose.yaml)。
+
 ![](../../images/model/step-model-query.png)
 
 6. 添加`NL2SQL服务`模型。
+
+> `模型名称`和`API endpoint URL`需要和启动模型服务时配置的参数一致。具体参考[启动模型服务](./docker_model/docker_gpu_model/docker-compose.yaml)。
+
 ![](../../images/model/step-model-nl2sql.png)
 
 
@@ -361,13 +374,20 @@ admin@vastai.com / admin / dify@123.
 
     ![](../../images/rag/rag-step-load.png)
 
-8. 添加知识库并发布应用。
+8. 更新编排中的Query任务、NL2SQL任务模型服务。
+
+    ![](../../images/rag/rag-step-query.png)
+    ![](../../images/rag/rag-step-nl2sql.png)
+
+9. 更新编排中的LLM模型服务。
+
+    ![](../../images/rag/rag-step8.png)
+
+10. 添加知识库并发布应用。
 
     ![](../../images/rag/rag-step-add-fully.png)
 
-
-
-9. 应用对话示例。
+11. 应用对话示例。
 
     ![](../../images/rag/rag-fully.png)
 
@@ -445,8 +465,18 @@ admin@vastai.com / admin / ragflow@123.
 
 1. 在Dify平台配置外部知识库API。
 
+> `API Key`为[RAGFlow API密钥](../../images/rag_with_ragflow/RAGFlow_api.png)。
+
 ![](../../images/rag_with_ragflow/RAGFlow_setting.png)
 
 2. 连接外部知识库。
 
-![](../../images/rag_with_ragflow/RAGFlow_dify.png)
+![](../../images/rag_with_ragflow/RAGFlow_dify-base.png)
+
+3. 召回测试。
+
+![](../../images/rag_with_ragflow/RAGFlow_dify-test.png)
+
+4. 在编排中添加外部知识库。
+
+![](../../images/rag_with_ragflow/RAGFlow_dify-2.png)
