@@ -151,7 +151,7 @@ sudo ./vastai_driver_install_d3_3_v2_7_a3_0_9c31939_00.25.08.11.run install --se
 
    ```json
     {
-        "batch_size": 4,
+        "batch_size": 1,
         "max_seqlen": 512 
     }
     ```
