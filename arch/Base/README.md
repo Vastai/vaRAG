@@ -115,8 +115,9 @@ sudo ./vastai_driver_install_d3_3_v2_7_a3_0_9c31939_00.25.08.11.run install --se
     ```
     # 基础路径
     HOST_DATA_DIR=/vastai/
-    HOST_EMBED_DATA_DIR=/vastai/vacc_deploy/bge-m3-512-fp16/
-    HOST_RERANK_DATA_DIR=/vastai/vacc_deploy/bge-reranker-v2-m3-512-fp16/
+    # emb/rerank模型目录的路径,模型目录下可以包含多个尺寸的模型，例如：[512,1024,2048,4096,8192]，每个尺寸是一个子目录
+    HOST_EMBED_DATA_DIR=/vastai/vacc_deploy/bge-m3-vacc/
+    HOST_RERANK_DATA_DIR=/vastai/vacc_deploy/bge-reranker-v2-m3-vacc/
 
     # 镜像设置
     TEXT2VEC_CPU_IMAGE=xprobe/xinference:v1.4.0-cpu
@@ -144,18 +145,19 @@ sudo ./vastai_driver_install_d3_3_v2_7_a3_0_9c31939_00.25.08.11.run install --se
 
 2. 通过docker-compose启动镜像。
 
-   - 若大模型为Qwen3系列，`bge-m3/bge-reranker-v2-m3`模型可在VA16上运行。启动模型服务前，需按照[VastModelZOO流程](https://github.com/Vastai/VastModelZOO/tree/develop/nlp/text2vec/bge)将`bge-m3/bge-reranker-v2-m3`模型转为`vacc`格式。
-   - 转成`vacc`格式后，还需要在`vacc`模型目录下创建文件夹`tokenizer`，并将原始模型文件中的`tokenizer_config.json`和`tokenizer.json`两个文件拷贝到`tokenizer`目录下。
-   - 在`tokenizer`文件夹下还需要添加`vacc_config.json`文件。
-   - `vacc_config.json`文件内容如下：具体参数值根据实际情况设置
-
-   ```json
-    {
-        "batch_size": 1,
-        "max_seqlen": 512 
-    }
-    ```
-
+   - 若大模型为Qwen3系列，`bge-m3/bge-reranker-v2-m3`模型可在VA16上运行。
+        - 启动模型服务前，需按照[VastModelZOO流程](https://github.com/Vastai/VastModelZOO/tree/develop/nlp/text2vec/bge)将`bge-m3/bge-reranker-v2-m3`模型转为`vacc`格式存放在`以模型输入长度命令`的子目录下，最终放到`/vastai/vacc_deploy/bge-m3-vacc/`或`/vastai/vacc_deploy/bge-reranker-v2-m3-vacc/`目录下。
+        - 转成`vacc`格式后，还需要在`vacc`模型子目录下创建文件夹`tokenizer`，并将原始模型文件中的`tokenizer_config.json`和`tokenizer.json`两个文件拷贝到`tokenizer`目录下。
+        - 在`tokenizer`文件夹下还需要添加`vacc_config.json`文件。
+        - `vacc_config.json`文件内容如下：具体参数值根据实际情况设置
+            - batch_size：模型Batch Size。
+            - max_seqlen：模型输入长度。子目录的名字，比如，加载的模型尺寸是512，batch size 1
+        ```json
+            {
+                "batch_size": 1,
+                "max_seqlen": 512 
+            }
+        ```
    ```BASH
    # Qwen3系列
    sudo docker-compose -f docker_model/docker_text2vec/docker-compose-vacc.yaml up -d
